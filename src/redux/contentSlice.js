@@ -7,7 +7,7 @@ const initialState = {
 
 export const getVideos = createAsyncThunk(
   "youtube/getvideos",
-  async (text, thunkAPI) => {
+  async ({ text, maxResults }, thunkAPI) => {
     try {
       const response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",
@@ -15,7 +15,7 @@ export const getVideos = createAsyncThunk(
           params: {
             part: "snippet",
             q: text,
-            maxResults: 15,
+            maxResults: maxResults,
             key: import.meta.env.VITE_YOUTUBE_API_KEY,
           },
         }

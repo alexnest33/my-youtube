@@ -11,11 +11,16 @@
 
   .header {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;           
-    padding: 10px 20px;
-    background-color: #f5f5f5;
-    gap:50px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px; /* ⬅️ отступ сверху и снизу */
+  border-bottom: 1px solid #eee;
+  }
+
+  .left_side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   
   .left-group {
@@ -23,3 +28,20 @@
     align-items: center;
     gap:10px;
   }
+
+
+  /* .list {
+    display: flex;
+    align-items: center;       /* было aligntems */
+    /* justify-content: space-between;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .spanLine {
+    flex: 1;
+    display: flex;          /* обязательно, чтобы align-items работал */
+    /* align-items: center;
+  } */ 

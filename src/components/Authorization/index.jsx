@@ -10,7 +10,7 @@ const Authorization = () => {
 
     const onFinish = values => {
         dispatch(login(values))
-        navigate('/content')
+        navigate('/menu')
         console.log('Success:', values);
 
     };

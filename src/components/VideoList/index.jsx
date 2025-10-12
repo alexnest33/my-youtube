@@ -11,7 +11,6 @@ const VideoList = () => {
         {items.map((item) => {
           return (
             <Col key={item.id.videoId} span={8}>
-              {/* <li> */}
               <Card
                 hoverable
                 variant="undefined"
@@ -40,7 +39,6 @@ const VideoList = () => {
                   </p>
                 </div>
               </Card>
-              {/* </li> */}
             </Col>
           );
         })}

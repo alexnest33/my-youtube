@@ -1,71 +1,99 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getVideos } from "../../redux/contentSlice";
 import { Input, Button, Flex } from "antd";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import LikeModalForm from "../LikeModalForm";
 import VideoList from "../VideoList";
 import { useDispatch } from "react-redux";
 
 const InputSearchContent = () => {
-  const [text, setText] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
+    const [text, setText] = useState("");
+    const [isLiked, setIsLiked] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useDispatch();
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
 
-  const handleClick = () => {
-    if (text.trim() === "") {
-      alert("Error");
-    } else {
-      localStorage.getItem("text");
-      dispatch(getVideos(text));
-    }
-  };
 
-  const suffix = (
-    <HeartOutlined
-      style={{
-        fontSize: 18,
-        color: "#1677ff",
-      }}
-      onClick={showModal}
-    />
-  );
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
 
-  return (
-    <>
-      <Flex
-        justify="center"
-        align="center"
-        gap="small"
-        style={{ marginTop: 60 }}
-      >
-        <Input
-          className="search-input"
-          size="middle"
-          value={text}
-          onChange={handleChange}
-          placeholder="Поиск..."
-          suffix={suffix}
+    const handleChange = (e) => {
+        setText(e.target.value);
+    };
+
+    const handleClick = () => {
+        if (text.trim() === "") {
+            alert("Error");
+        } else {
+            localStorage.getItem("text");
+            dispatch(getVideos(text));
+            setText("")
+        }
+    };
+
+    const suffix = isLiked ? (
+        <HeartFilled
+            style={{
+                fontSize: 18,
+                color: "blue",
+                cursor: "pointer",
+            }}
+            onClick={showModal}
         />
-        <Button type="primary" variant="solid" onClick={handleClick}>
-          НАЙТИ
-        </Button>
-      </Flex>
-      <LikeModalForm
-        text={text}
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-      />
-      <VideoList />
-    </>
-  );
+    ) : (
+        <HeartOutlined
+            style={{
+                fontSize: 18,
+                color: "#1677ff",
+                cursor: "pointer",
+            }}
+            onClick={showModal}
+        />
+    );
+
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("forma")) || []
+        setIsLiked(data.some((item) => item.name === text))
+    }, [text])
+
+    return (
+        <>
+            <Flex vertical justify="center" align="center" gap="small" style={{ marginTop: 60, fontSize: 12 }} >
+                <h1>Поиск видео </h1>
+            </Flex>
+            <Flex
+                justify="center"
+                align="center"
+                gap="small"
+                style={{ marginTop: 10 }}
+            >
+
+                <Input
+                    className="search-input"
+                    size="middle"
+                    value={text}
+                    onChange={handleChange}
+                    placeholder="Поиск..."
+                    suffix={suffix}
+                />
+                <Button type="primary" variant="solid" onClick={handleClick}>
+                    НАЙТИ
+                </Button>
+            </Flex>
+            <LikeModalForm
+                text={text}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                setText={setText}
+                setIsLiked={setIsLiked}
+
+            />
+            <VideoList />
+        </>
+    );
 };
 
 export default InputSearchContent;
