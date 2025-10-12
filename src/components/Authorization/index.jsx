@@ -25,8 +25,8 @@ const Authorization = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", // высота всего экрана
-        backgroundColor: "#f5f5f5", // можно убрать или поменять
+        height: "100vh", 
+        backgroundColor: "#f5f5f5",
       }}>
       <Form
         name="basic"
