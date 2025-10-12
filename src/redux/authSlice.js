@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
       localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue("Ошибка авторизации");
     }
   }
 );
@@ -35,9 +35,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         console.log(action);
       })
-      .addCase(login.rejected, (state, action) => {
-        console.log(action);
-      });
+      .addCase(login.rejected, (state, action) => {});
   },
 });
 

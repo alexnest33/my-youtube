@@ -1,20 +1,23 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { login } from "../../redux/authSlice";
 
 const Authorization = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values) => {
-    dispatch(login(values));
+    dispatch(login(values))
     navigate("/menu");
-    console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
-    alert('Такого пользователя не существует')
+    messageApi.info('Неправильный логин или пароль')
+    // alert('Такого пользователя не существует')
     dispatch(login(errorInfo));
+    form.resetFields()
     console.log("Failed:", errorInfo);
   };
 
@@ -25,10 +28,11 @@ const Authorization = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", 
+        height: "100vh",
         backgroundColor: "#f5f5f5",
       }}>
       <Form
+        form={form}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -63,6 +67,7 @@ const Authorization = () => {
           />
           <h2 style={{ textAlign: "center", margin: 0 }}>Войдите в свой аккаунт</h2>
         </div>
+        {contextHolder}
         <Form.Item
           label="E-mail"
           name="email"
