@@ -13,22 +13,56 @@ const Authorization = () => {
     console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
+    alert('Такого пользователя не существует')
     dispatch(login(errorInfo));
     console.log("Failed:", errorInfo);
   };
 
   return (
-    <>
+
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh", // высота всего экрана
+        backgroundColor: "#f5f5f5", // можно убрать или поменять
+      }}>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
+        style={{
+          maxWidth: 400,
+          height: "50vh",
+          width: "100%",
+          border: "1px solid #d9d9d9",
+          borderRadius: 8,
+          padding: "24px 80px",
+          backgroundColor: "white",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+        }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginBottom: 24,
+          }}
+        >
+          <img
+            src="sibdev-logo.png"
+            alt="SibDev Logo"
+            height="50px"
+            style={{ marginBottom: 8 }}
+          />
+          <h2 style={{ textAlign: "center", margin: 0 }}>Войдите в свой аккаунт</h2>
+        </div>
         <Form.Item
           label="E-mail"
           name="email"
@@ -55,16 +89,17 @@ const Authorization = () => {
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" label={null}>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>Сохранить</Checkbox>
         </Form.Item>
 
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Войти
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
+
   );
 };
 
