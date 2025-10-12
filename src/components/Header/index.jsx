@@ -1,43 +1,45 @@
-import { useNavigate } from "react-router"
-import { Button } from "antd"
-import InputSearchContent from "../InputSearchContent"
+import { useNavigate } from "react-router";
+import { Button } from "antd";
 
 const Header = () => {
+  const navigate = useNavigate();
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
-    const navigate = useNavigate()
+  const favourites = () => {
+    navigate("/favourites");
+  };
 
-    const logOut = () => {
-        localStorage.clear()
-        navigate("/")
-    }
+  const searchRedirect = () => {
+    navigate("/menu");
+  };
 
+  return (
+    <>
+      <div className="header">
+        <div className="left_side">
+          <img src="sibdev-logo.png" alt="" height="40px" />
+          <Button type="link" variant="solid" onClick={searchRedirect}>
+            Поиск
+          </Button>
+          <Button type="link" variant="solid" onClick={favourites}>
+            Избранное
+          </Button>
+        </div>
 
-    const favourites = () => {
-        navigate("/favourites")
-    }
+        {localStorage.getItem("token") ? (
+          <Button type="link" variant="solid" onClick={logOut}>
+            Выйти
+          </Button>
+        ) : (
+          <p>Войдите в свой аккаунт</p>
+        )}
+      </div>
+    </>
+  );
+};
 
-
-    const searchRedirect = () => {
-        navigate("/menu")
-    }
-
-    return (
-        <>
-            <div className="header">
-                <div className="left_side">
-                    <img src="sibdev-logo.png" alt="" height="40px" />
-                    <Button type="link" variant="solid" onClick={searchRedirect}>Поиск</Button>
-                    <Button type="link" variant="solid" onClick={favourites}  >Избранное</Button>
-                </div>
-
-                {localStorage.getItem("token") ?
-                    <Button type="link" variant="solid" onClick={logOut}>Выйти</Button> : <p>Войдите в свой аккаунт</p>}
-            </div>
-
-
-        </>
-    )
-}
-
-export default Header
+export default Header;

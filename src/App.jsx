@@ -1,10 +1,10 @@
-import "./App.css";
+import { Routes, Route } from "react-router";
 import Authorization from "./components/Authorization";
-import { Routes, Route, Navigate } from "react-router";
 import PrivateRoute from "./components/PrivateRoute";
 import InputSearchContent from "./components/InputSearchContent";
 import Header from "./components/Header";
 import Favourites from "./components/Favourites";
+import "./App.css";
 function App() {
   return (
     <>

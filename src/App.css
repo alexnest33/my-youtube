@@ -1,39 +1,35 @@
-
-
 .search-input {
-   
-    width: 600px;
-    border-radius: 20px;
-    background-color: #f9f9f9;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+  width: 600px;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .header {
-    display: flex;
+.header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px; /* ⬅️ отступ сверху и снизу */
+  padding: 12px 24px;
   border-bottom: 1px solid #eee;
-  }
+}
 
-  .left_side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .left-group {
-    display: flex;
-    align-items: center;
-    gap:10px;
-  }
+.left_side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  /* .list {
+/* .list {
     display: flex;
     align-items: center;       /* было aligntems */
-    /* justify-content: space-between;
+/* justify-content: space-between;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     padding: 8px;
@@ -43,5 +39,5 @@
   .spanLine {
     flex: 1;
     display: flex;          /* обязательно, чтобы align-items работал */
-    /* align-items: center;
-  } */ 
+/* align-items: center;
+  } */
