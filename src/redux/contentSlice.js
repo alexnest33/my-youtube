@@ -7,7 +7,7 @@ const initialState = {
 
 export const getVideos = createAsyncThunk(
   "youtube/getvideos",
-  async ({ text, maxResults }, thunkAPI) => {
+  async ({ text, maxResults  }, thunkAPI) => {
     try {
       const response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",

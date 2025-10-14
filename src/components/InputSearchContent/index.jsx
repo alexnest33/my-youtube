@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getVideos } from "../../redux/contentSlice";
 import { useDispatch } from "react-redux";
 import { Input, Button, Flex } from "antd";
@@ -10,7 +10,12 @@ const InputSearchContent = () => {
   const [text, setText] = useState("");
   const [isLiked, setIsLiked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const ref = useRef()
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    ref.current.focus()
+  }, [])
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -79,8 +84,10 @@ const InputSearchContent = () => {
           onChange={handleChange}
           placeholder="Поиск..."
           suffix={suffix}
+          ref={ref}
+
         />
-        <Button type="primary" variant="solid" onClick={handleClick}>
+        <Button type="primary" variant="solid" onClick={handleClick} >
           НАЙТИ
         </Button>
       </Flex>
@@ -91,7 +98,6 @@ const InputSearchContent = () => {
         setText={setText}
         setIsLiked={setIsLiked}
       />
-      <VideoList />
     </>
   );
 };
