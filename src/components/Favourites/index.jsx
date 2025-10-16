@@ -5,19 +5,23 @@ import { Card, Button, Row, Col } from "antd";
 import Header from "../Header";
 import InputSearchContent from "../InputSearchContent";
 import VideoList from "../VideoList";
+import { useNavigate } from "react-router";
+import { saving } from "../../redux/saveInfoSlice";
 
 const Favourites = () => {
     const url = import.meta.env.VITE_YOUTUBE_ID;
     const [savedRequests, setSavedRequests] = useState([]);
     const dispatch = useDispatch();
-    const { items } = useSelector((store) => store.content);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("forma")) || [];
         setSavedRequests(data);
     }, []);
 
     const handleDelete = (id) => {
+
+
+
         setSavedRequests((prevState) => {
             const newState = prevState.filter((item) => item.id !== id);
             localStorage.setItem("forma", JSON.stringify(newState));
@@ -25,7 +29,13 @@ const Favourites = () => {
         });
     };
 
-    console.log(savedRequests);
+    const handleClick = (id) => {
+        const result = savedRequests.find((item) => item.id === id);
+        dispatch(saving(result))
+        navigate("/menu")
+    };
+
+
 
     return (
         <>
@@ -62,14 +72,7 @@ const Favourites = () => {
                                         <Button
                                             type="primary"
                                             style={{ marginRight: 8 }}
-                                            onClick={() =>
-                                                dispatch(
-                                                    getVideos({
-                                                        text: item.name,
-                                                        maxResults: item.maxResults,
-                                                    })
-                                                )
-                                            }
+                                            onClick={() => handleClick(item.id)}
                                         >
                                             Выполнить
                                         </Button>
@@ -85,42 +88,6 @@ const Favourites = () => {
                     )}
                 </div>
             </div>
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                {items.map((item) => {
-                    return (
-                        <Col key={item.id.videoId} span={8}>
-                            <Card
-                                hoverable
-                                variant="undefined"
-                                styles={{ padding: 0, marginTop: 30 }}
-                            >
-                                <a href={`${url}${item.id.videoId}`} target="_blank">
-                                    <img
-                                        src={item.snippet.thumbnails.medium.url}
-                                        alt={item.snippet.title}
-                                        style={{ width: "100%", borderRadius: "8px" }}
-                                    />
-                                </a>
-                                <div style={{ marginTop: "8px" }}>
-                                    <h3
-                                        style={{
-                                            margin: 0,
-                                            fontSize: "16px",
-                                            fontWeight: 500,
-                                            color: "black",
-                                        }}
-                                    >
-                                        {item.snippet.title}
-                                    </h3>
-                                    <p style={{ margin: 0, fontSize: "14px", color: "#606060" }}>
-                                        {item.snippet.channelTitle}
-                                    </p>
-                                </div>
-                            </Card>
-                        </Col>
-                    );
-                })}
-            </Row>
         </>
     );
 };

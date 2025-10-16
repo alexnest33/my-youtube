@@ -41,3 +41,13 @@
     display: flex;          /* обязательно, чтобы align-items работал */
 /* align-items: center;
   } */
+
+
+
+  .zerovideo{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    color: black;
+  
+  }

@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { getVideos } from "../../redux/contentSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import LikeModalForm from "../LikeModalForm";
+import { saving } from "../../redux/saveInfoSlice";
 import VideoList from "../VideoList";
+
 
 const InputSearchContent = () => {
   const [text, setText] = useState("");
@@ -12,6 +14,9 @@ const InputSearchContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const ref = useRef()
   const dispatch = useDispatch();
+
+
+
 
   useEffect(() => {
     ref.current.focus()
@@ -30,7 +35,7 @@ const InputSearchContent = () => {
       alert("Error");
     } else {
       localStorage.getItem("text");
-      dispatch(getVideos(text));
+      dispatch(saving({ name: text, sorted: 'relevance' }))
       setText("");
     }
   };

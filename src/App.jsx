@@ -1,8 +1,6 @@
 import { Routes, Route } from "react-router";
 import Authorization from "./components/Authorization";
 import PrivateRoute from "./components/PrivateRoute";
-import InputSearchContent from "./components/InputSearchContent";
-import Header from "./components/Header";
 import Favourites from "./components/Favourites";
 import "./App.css";
 import MainPage from "./components/pages/MainPage";
