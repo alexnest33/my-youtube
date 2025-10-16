@@ -5,7 +5,7 @@ import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import LikeModalForm from "../LikeModalForm";
 import { saving } from "../../redux/saveInfoSlice";
-import VideoList from "../VideoList";
+
 
 
 const InputSearchContent = () => {
@@ -35,7 +35,7 @@ const InputSearchContent = () => {
       alert("Error");
     } else {
       localStorage.getItem("text");
-      dispatch(saving({ name: text, sorted: 'relevance' }))
+      dispatch(saving({ name: text, maxResults: 15 }))
       setText("");
     }
   };

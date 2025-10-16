@@ -10,6 +10,7 @@ const VideoList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log(active.maxResults)
     dispatch(getVideos({ name: active.name, maxResults: active.maxResults }))
   }, [active])
 
