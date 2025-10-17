@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Card, Col } from "antd";
 import { getVideos } from "../../redux/contentSlice";
 import { useEffect } from 'react'
+import ViewCount from "../ViewCount";
 
 const VideoList = () => {
   const url = import.meta.env.VITE_YOUTUBE_ID;
@@ -35,6 +36,7 @@ const VideoList = () => {
                 <p className="video-description">
                   {item.snippet.description.slice(0, 100)}...
                 </p>
+                <p>Количество просмотров: <ViewCount id={item.id.videoId} />  </p>
               </div>
             </div>
           ))
