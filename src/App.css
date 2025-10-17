@@ -28,7 +28,7 @@
 
 /* .list {
     display: flex;
-    align-items: center;       /* было aligntems */
+    align-items: center;       
 /* justify-content: space-between;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -38,7 +38,7 @@
 
   .spanLine {
     flex: 1;
-    display: flex;          /* обязательно, чтобы align-items работал */
+    display: flex;          
 /* align-items: center;
   } */
 
@@ -50,4 +50,70 @@
     font-size: 18px;
     color: black;
   
+  }
+
+
+  .video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 60px; /* 🔥 отступ от поиска */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+  }
+  
+  .video-item {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+  }
+  
+  .video-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  .video-thumbnail {
+    width: 280px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .video-info {
+    flex: 1;
+  }
+  
+  .video-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  
+  .video-channel {
+    font-size: 14px;
+    color: #1677ff;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .video-description {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .no-videos {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    margin-top: 80px;
   }

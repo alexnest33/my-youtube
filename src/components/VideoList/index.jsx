@@ -17,11 +17,37 @@ const VideoList = () => {
   console.log(active)
   return (
     <>
-      {items.length > 0 ?
+
+      <div className="video-list">
+        {items.length === 0 ? (
+          <p className="no-videos">Ничего не найдено </p>
+        ) : (
+          items.map((item) => (
+            <div key={item.id.videoId} className="video-item">
+              <img
+                className="video-thumbnail"
+                src={item.snippet.thumbnails.medium.url}
+                alt={item.snippet.title}
+              />
+              <div className="video-info">
+                <h3 className="video-title">{item.snippet.title}</h3>
+                <p className="video-channel">{item.snippet.channelTitle}</p>
+                <p className="video-description">
+                  {item.snippet.description.slice(0, 100)}...
+                </p>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+
+
+      {/* {items.length > 0 ?
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {items.map((item) => {
             return (
-              <Col key={item.id.videoId} span={8}>
+              <Col key={item.id.videoId} span={24}>
                 <Card
                   hoverable
                   variant="undefined"
@@ -53,7 +79,7 @@ const VideoList = () => {
               </Col>
             );
           })}
-        </Row> : <p className="zerovideo" >Введите в поиске интересующий вас запрос!</p>}
+        </Row> : <p className="zerovideo" >Введите в поиске интересующий вас запрос!</p>} */}
     </>
   );
 };
