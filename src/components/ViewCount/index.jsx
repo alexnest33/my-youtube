@@ -1,28 +1,36 @@
-import { useEffect } from "react"
-import { getViews } from "../../redux/viewsSlice"
-import { useDispatch, useSelector } from "react-redux"
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ViewCount = ({ id }) => {
-    const dispatch = useDispatch()
-    const { items } = useSelector((store) => store.views)
+    const [views, setViews] = useState(0);
+    const getCountViews = async () => {
+        try {
+            const response = await axios.get(
+                "https://www.googleapis.com/youtube/v3/videos",
+                {
+                    params: {
+                        part: "statistics",
+                        id: id,
+                        key: import.meta.env.VITE_YOUTUBE_API_KEY,
+                    },
+                }
+            );
+            setViews(response.data.items[0].statistics.viewCount)
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     useEffect(() => {
-        dispatch(getViews(id))
+        getCountViews()
     }, [])
+
 
     return (
         <>
-            {items.map((item) => {
-                return (
-                    <div key={item.id.videoId} >
-                        {item.statistics.viewCount}
-                    </div>
-                )
-            })}
+            <p>Количество просмотров: {views} просмотров</p>
         </>
-    )
-}
+    );
+};
 
-
-export default ViewCount
+export default ViewCount;

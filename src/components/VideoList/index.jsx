@@ -36,7 +36,7 @@ const VideoList = () => {
                 <p className="video-description">
                   {item.snippet.description.slice(0, 100)}...
                 </p>
-                <p>Количество просмотров: <ViewCount id={item.id.videoId} />  </p>
+                <ViewCount id={item.id.videoId} />
               </div>
             </div>
           ))
