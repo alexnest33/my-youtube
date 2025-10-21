@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Card, Button, Row, Col } from "antd";
-import { saving } from "../../redux/saveInfoSlice";
+import { changeReq, saving } from "../../redux/saveInfoSlice";
 import Header from "../Header";
 import LikeModalForm from "../LikeModalForm";
 
@@ -36,11 +36,9 @@ const Favourites = () => {
     };
 
     const handleChangeRequest = (id) => {
-        setSavedRequests((prevState) => {
-            const newState = prevState.map((item) => item.id === id)
-            localStorage.setItem("forma", JSON.stringify(newState));
-            return newState
-        })
+        const result = savedRequests.find((item) => item.id === id)
+        console.log(result)
+        dispatch(changeReq(result))
         setChangeModal(true);
     };
 
@@ -99,7 +97,7 @@ const Favourites = () => {
                                     >
                                         Удалить
                                     </Button>
-                                   
+
                                 </div>
                             </div>
                         </Card>

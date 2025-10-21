@@ -1,5 +1,6 @@
 import { Modal, Form, Input, Slider, message } from "antd";
 import { useReducer } from "react";
+import { useSelector } from "react-redux";
 
 const LikeModalForm = ({
   text,

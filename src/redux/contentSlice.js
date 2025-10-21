@@ -22,7 +22,7 @@ export const getVideos = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log('Ошибка отправки запроса')
+      console.log("Ошибка отправки запроса");
     }
   }
 );

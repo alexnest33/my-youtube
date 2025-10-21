@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import LikeModalForm from "../LikeModalForm";
@@ -66,7 +66,7 @@ const InputSearchContent = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("forma")) || [];
-    setIsLiked(data.some((item) => item.name === text));
+    setIsLiked(data.some((item) => item.name === text))
   }, [text]);
 
   return (

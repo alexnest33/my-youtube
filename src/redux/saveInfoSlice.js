@@ -19,11 +19,11 @@ export const saveInfoSlice = createSlice({
     deleteItem(state, action) {
       state.active = state.filter((item) => item.id !== action.payload);
     },
-    changeModal(state, action) {
-      state.active = state.find((item) => item.id === action.payload);
+    changeReq(state, action) {
+      state.active = action.payload;
     },
   },
 });
 
-export const { saving } = saveInfoSlice.actions;
+export const { saving, changeReq } = saveInfoSlice.actions;
 export default saveInfoSlice.reducer;
