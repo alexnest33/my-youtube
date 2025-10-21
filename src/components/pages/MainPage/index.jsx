@@ -3,9 +3,6 @@ import InputSearchContent from "../../InputSearchContent"
 import VideoList from "../../VideoList"
 
 const MainPage = () => {
-
-
-
     return (
         <>
             <Header />

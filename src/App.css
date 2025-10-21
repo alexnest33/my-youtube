@@ -26,6 +26,35 @@
   gap: 10px;
 }
 
+.video-list.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.video-list.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  justify-content: center; /* 💥 выравниваем сетку по центру */
+  max-width: 1200px; /* чтобы сетка не растягивалась на весь экран */
+  margin: 0 auto;
+}
+
+.video-item {
+  display: flex;
+  gap: 16px;
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-list.grid .video-item {
+  flex-direction: column;
+  align-items: center;
+}
+
 /* .list {
     display: flex;
     align-items: center;       

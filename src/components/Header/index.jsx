@@ -18,28 +18,25 @@ const Header = () => {
   };
 
   return (
-    <>
-
-      <div className="header">
-        <div className="left_side">
-          <img src="sibdev-logo.png" alt="" height="40px" />
-          <Button type="link" variant="solid" onClick={searchRedirect}>
-            Поиск
-          </Button>
-          <Button type="link" variant="solid" onClick={favourites}>
-            Избранное
-          </Button>
-        </div>
-
-        {localStorage.getItem("token") ? (
-          <Button type="link" variant="solid" onClick={logOut}>
-            Выйти
-          </Button>
-        ) : (
-          <p>Войдите в свой аккаунт</p>
-        )}
+    <div className="header">
+      <div className="left_side">
+        <img src="sibdev-logo.png" alt="" height="40px" />
+        <Button type="link" variant="solid" onClick={searchRedirect}>
+          Поиск
+        </Button>
+        <Button type="link" variant="solid" onClick={favourites}>
+          Избранное
+        </Button>
       </div>
-    </>
+
+      {localStorage.getItem("token") ? (
+        <Button type="link" variant="solid" onClick={logOut}>
+          Выйти
+        </Button>
+      ) : (
+        <p>Войдите в свой аккаунт</p>
+      )}
+    </div>
   );
 };
 

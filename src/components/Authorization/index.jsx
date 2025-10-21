@@ -5,8 +5,11 @@ import { login } from "../../redux/authSlice";
 
 const Authorization = () => {
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
   const [form] = Form.useForm();
+
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values) => {
@@ -15,14 +18,12 @@ const Authorization = () => {
   };
   const onFinishFailed = (errorInfo) => {
     messageApi.info('Неправильный логин или пароль')
-    // alert('Такого пользователя не существует')
     dispatch(login(errorInfo));
     form.resetFields()
     console.log("Failed:", errorInfo);
   };
 
   return (
-
     <div
       style={{
         display: "flex",
@@ -110,8 +111,3 @@ const Authorization = () => {
 
 export default Authorization;
 
-//посмотреть примеры
-//решать задачи
-// смотреь ответ если не знаешь
-// нужны готовые примеры
-// localStorage.setItem('token")

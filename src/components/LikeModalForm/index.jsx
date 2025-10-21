@@ -10,6 +10,8 @@ const LikeModalForm = ({
 }) => {
   const [messageApi, contextHolder] = message.useMessage();
 
+  const { active } = useSelector(store => store.saveInfo)
+
   function saveReducer(state, action) {
     switch (action.type) {
       case "changeTitle":
@@ -64,7 +66,6 @@ const LikeModalForm = ({
     setText("");
     setIsLiked(true);
     messageApi.info('Запрос добавлен во вкладку "Избранное"');
-    console.log(data);
   };
 
   return (
@@ -81,7 +82,6 @@ const LikeModalForm = ({
         <Form.Item label="Запрос:">
           <Input disabled value={text} />
         </Form.Item>
-
         <Form.Item label="Название:">
           <Input
             placeholder="Укажите название"
@@ -97,7 +97,6 @@ const LikeModalForm = ({
             <option value="viewCount">По просмотрам</option>
           </select>
         </Form.Item>
-
         <Form.Item label="Максимальное количество">
           <Slider
             value={state.maxResults}
@@ -105,11 +104,6 @@ const LikeModalForm = ({
             onChange={handleChangeMaxResult}
             tooltip={{ open: true }}
           />
-          {/* <Input
-                        type="number"
-                        value={state.maxResults}
-                        onChange={handleChangeMaxResult}
-                    /> */}
         </Form.Item>
       </Form>
     </Modal>

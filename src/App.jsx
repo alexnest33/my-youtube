@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router";
 import Authorization from "./components/Authorization";
 import PrivateRoute from "./components/PrivateRoute";
 import Favourites from "./components/Favourites";
-import "./App.css";
 import MainPage from "./components/pages/MainPage";
+import "./App.css";
 function App() {
   return (
     <>

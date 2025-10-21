@@ -14,7 +14,6 @@ export const login = createAsyncThunk(
         "https://todo-redev.herokuapp.com/api/auth/login",
         { email: values.email, password: values.password }
       );
-      console.log("Данные получены", response.data);
       localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (error) {
@@ -27,17 +26,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(login.pending, (state, action) => {
-        console.log(action);
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        console.log(action);
-      })
-      .addCase(login.rejected, (state, action) => {});
-  },
+ 
 });
 
-export const { writeInfo } = authSlice.actions;
 export default authSlice.reducer;

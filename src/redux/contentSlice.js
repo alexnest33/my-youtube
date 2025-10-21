@@ -20,16 +20,12 @@ export const getVideos = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue("blbal");
+      console.log('Ошибка отправки запроса')
     }
   }
 );
-
-
-
 
 const contentSlice = createSlice({
   name: "search",

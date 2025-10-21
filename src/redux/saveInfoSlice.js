@@ -15,10 +15,12 @@ export const saveInfoSlice = createSlice({
   reducers: {
     saving(state, action) {
       state.active = action.payload;
-     
     },
     deleteItem(state, action) {
       state.active = state.filter((item) => item.id !== action.payload);
+    },
+    changeModal(state, action) {
+      state.active = state.find((item) => item.id === action.payload);
     },
   },
 });

@@ -1,22 +1,20 @@
 import { useState, useEffect, useRef } from "react";
-import { getVideos } from "../../redux/contentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import LikeModalForm from "../LikeModalForm";
 import { saving } from "../../redux/saveInfoSlice";
 
-
-
 const InputSearchContent = () => {
   const [text, setText] = useState("");
+
   const [isLiked, setIsLiked] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const ref = useRef()
+
   const dispatch = useDispatch();
-
-
-
 
   useEffect(() => {
     ref.current.focus()
@@ -39,6 +37,12 @@ const InputSearchContent = () => {
       setText("");
     }
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleClick()
+    }
+  }
 
   const suffix = isLiked ? (
     <HeartFilled
@@ -67,6 +71,7 @@ const InputSearchContent = () => {
 
   return (
     <>
+
       <Flex
         vertical
         justify="center"
@@ -90,6 +95,7 @@ const InputSearchContent = () => {
           placeholder="Поиск..."
           suffix={suffix}
           ref={ref}
+          onKeyDown={handleKeyDown}
 
         />
         <Button type="primary" variant="solid" onClick={handleClick} >

@@ -5,7 +5,5 @@ const PrivateRoute = () => {
     return isAuth ? <Outlet /> : <Navigate to="/" replace />
 }
 
-
-
 export default PrivateRoute
 
