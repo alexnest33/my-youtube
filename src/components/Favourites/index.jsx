@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { Card, Button, Row, Col } from "antd";
+import { Card, Button, Modal, Input, Form, Slider } from "antd";
 import { changeReq, saving } from "../../redux/saveInfoSlice";
 import Header from "../Header";
 import LikeModalForm from "../LikeModalForm";
@@ -14,7 +14,9 @@ const Favourites = () => {
     const navigate = useNavigate();
 
     const [changeModal, setChangeModal] = useState(false);
-    const [changeRequest, setChangeRequest] = useState(null);
+
+    const { active } = useSelector(store => store.saveInfo)
+
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("forma")) || [];
@@ -41,6 +43,17 @@ const Favourites = () => {
         dispatch(changeReq(result))
         setChangeModal(true);
     };
+
+    const handleSaveChanges = () => {
+        const updated = savedRequests.map((item) => item.id === active.id ? active : item)
+        localStorage.setItem("forma", JSON.stringify(updated));
+        setSavedRequests(updated);
+        setChangeModal(false);
+    }
+
+    const cancelModal = () => {
+        setChangeModal(false)
+    }
 
     return (
 
@@ -107,6 +120,40 @@ const Favourites = () => {
                     <p>Пока нет сохранённых запросов 😔</p>
                 )}
             </div>
+            {changeModal &&
+                <Modal open={changeModal} title='Редактировать запрос' okText="Сохранить"
+                    cancelText="Отмена" onCancel={cancelModal}
+                    onOk={handleSaveChanges} >
+                    <Form layout="vertical">
+                        <Form.Item label="Запрос:">
+                            <Input disabled value={active.name} />
+                        </Form.Item>
+                        <Form.Item label="Название:">
+                            <Input
+                                placeholder="Укажите название"
+                                onChange={(e) => dispatch(changeReq({ ...active, title: e.target.value }))}
+                                value={active.title}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Сортировать по:">
+                            <select value={active.sorted} onChange={(e) => dispatch(changeReq({ ...active, sorted: e.target.value }))}>
+                                <option value="relevance">По релевантности</option>
+                                <option value="date">По дате</option>
+                                <option value="rating">По рейтингу</option>
+                                <option value="viewCount">По просмотрам</option>
+                            </select>
+                        </Form.Item>
+                        <Form.Item label="Максимальное количество">
+                            <Slider
+                                value={active.maxResults}
+                                max={15}
+                                onChange={(value) => dispatch(changeReq({ ...active, maxResults: value }))}
+                                tooltip={{ open: true }}
+                            />
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            }
         </div>
     );
 };
