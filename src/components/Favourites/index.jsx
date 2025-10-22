@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Card, Button, Modal, Input, Form, Slider } from "antd";
-import { changeReq, saving } from "../../redux/saveInfoSlice";
+import { changeRequest, saving } from "../../redux/saveInfoSlice";
 import Header from "../Header";
-import LikeModalForm from "../LikeModalForm";
 
 const Favourites = () => {
+
     const [savedRequests, setSavedRequests] = useState([]);
 
     const dispatch = useDispatch();
@@ -15,7 +15,9 @@ const Favourites = () => {
 
     const [changeModal, setChangeModal] = useState(false);
 
-    const { active } = useSelector(store => store.saveInfo)
+    const { active } = useSelector((store) => store.saveInfo);
+    
+
 
 
     useEffect(() => {
@@ -25,10 +27,11 @@ const Favourites = () => {
 
     const handleDelete = (id) => {
         setSavedRequests((prevState) => {
-            const newState = prevState.filter((item) => item.id !== id);
-            localStorage.setItem("forma", JSON.stringify(newState));
-            return newState;
+          const newState = prevState.filter((item) => item.id !== id);
+          localStorage.setItem("forma", JSON.stringify(newState));
+          return newState;  
         });
+      
     };
 
     const handleClick = (id) => {
@@ -38,25 +41,26 @@ const Favourites = () => {
     };
 
     const handleChangeRequest = (id) => {
-        const result = savedRequests.find((item) => item.id === id)
-        console.log(result)
-        dispatch(changeReq(result))
+        const result = savedRequests.find((item) => item.id === id);
+        console.log(result);
+        dispatch(changeRequest(result));
         setChangeModal(true);
     };
 
     const handleSaveChanges = () => {
-        const updated = savedRequests.map((item) => item.id === active.id ? active : item)
+        const updated = savedRequests.map((item) =>
+            item.id === active.id ? active : item
+        );
         localStorage.setItem("forma", JSON.stringify(updated));
         setSavedRequests(updated);
         setChangeModal(false);
-    }
+    };
 
     const cancelModal = () => {
-        setChangeModal(false)
-    }
+        setChangeModal(false);
+    };
 
     return (
-
         <div>
             <Header />
             <div
@@ -110,20 +114,23 @@ const Favourites = () => {
                                     >
                                         Удалить
                                     </Button>
-
                                 </div>
                             </div>
                         </Card>
-
                     ))
                 ) : (
                     <p>Пока нет сохранённых запросов 😔</p>
                 )}
             </div>
-            {changeModal &&
-                <Modal open={changeModal} title='Редактировать запрос' okText="Сохранить"
-                    cancelText="Отмена" onCancel={cancelModal}
-                    onOk={handleSaveChanges} >
+            {changeModal && (
+                <Modal
+                    open={changeModal}
+                    title="Редактировать запрос"
+                    okText="Сохранить"
+                    cancelText="Отмена"
+                    onCancel={cancelModal}
+                    onOk={handleSaveChanges}
+                >
                     <Form layout="vertical">
                         <Form.Item label="Запрос:">
                             <Input disabled value={active.name} />
@@ -131,12 +138,19 @@ const Favourites = () => {
                         <Form.Item label="Название:">
                             <Input
                                 placeholder="Укажите название"
-                                onChange={(e) => dispatch(changeReq({ ...active, title: e.target.value }))}
+                                onChange={(e) =>
+                                    dispatch(changeRequest({ ...active, title: e.target.value }))
+                                }
                                 value={active.title}
                             />
                         </Form.Item>
                         <Form.Item label="Сортировать по:">
-                            <select value={active.sorted} onChange={(e) => dispatch(changeReq({ ...active, sorted: e.target.value }))}>
+                            <select
+                                value={active.sorted}
+                                onChange={(e) =>
+                                    dispatch(changeRequest({ ...active, sorted: e.target.value }))
+                                }
+                            >
                                 <option value="relevance">По релевантности</option>
                                 <option value="date">По дате</option>
                                 <option value="rating">По рейтингу</option>
@@ -147,13 +161,15 @@ const Favourites = () => {
                             <Slider
                                 value={active.maxResults}
                                 max={15}
-                                onChange={(value) => dispatch(changeReq({ ...active, maxResults: value }))}
+                                onChange={(value) =>
+                                    dispatch(changeRequest({ ...active, maxResults: value }))
+                                }
                                 tooltip={{ open: true }}
                             />
                         </Form.Item>
                     </Form>
                 </Modal>
-            }
+            )}
         </div>
     );
 };

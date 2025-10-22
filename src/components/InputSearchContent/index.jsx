@@ -12,13 +12,13 @@ const InputSearchContent = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const ref = useRef()
+  const ref = useRef();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    ref.current.focus()
-  }, [])
+    ref.current.focus();
+  }, []);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -33,16 +33,16 @@ const InputSearchContent = () => {
       alert("Error");
     } else {
       localStorage.getItem("text");
-      dispatch(saving({ name: text, maxResults: 15 }))
+      dispatch(saving({ name: text, maxResults: 15 }));
       setText("");
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleClick()
+      handleClick();
     }
-  }
+  };
 
   const suffix = isLiked ? (
     <HeartFilled
@@ -66,12 +66,11 @@ const InputSearchContent = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("forma")) || [];
-    setIsLiked(data.some((item) => item.name === text))
+    setIsLiked(data.some((item) => item.name === text));
   }, [text]);
 
   return (
     <>
-
       <Flex
         vertical
         justify="center"
@@ -96,9 +95,8 @@ const InputSearchContent = () => {
           suffix={suffix}
           ref={ref}
           onKeyDown={handleKeyDown}
-
         />
-        <Button type="primary" variant="solid" onClick={handleClick} >
+        <Button type="primary" variant="solid" onClick={handleClick}>
           НАЙТИ
         </Button>
       </Flex>

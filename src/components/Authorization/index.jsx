@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Input, message } from "antd";
 import { login } from "../../redux/authSlice";
 
 const Authorization = () => {
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -13,13 +14,13 @@ const Authorization = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values) => {
-    dispatch(login(values))
+    dispatch(login(values));
     navigate("/menu");
   };
   const onFinishFailed = (errorInfo) => {
-    messageApi.info('Неправильный логин или пароль')
+    messageApi.info("Неправильный логин или пароль");
     dispatch(login(errorInfo));
-    form.resetFields()
+    form.resetFields();
     console.log("Failed:", errorInfo);
   };
 
@@ -31,7 +32,8 @@ const Authorization = () => {
         alignItems: "center",
         height: "100vh",
         backgroundColor: "#f5f5f5",
-      }}>
+      }}
+    >
       <Form
         form={form}
         name="basic"
@@ -66,7 +68,9 @@ const Authorization = () => {
             height="50px"
             style={{ marginBottom: 8 }}
           />
-          <h2 style={{ textAlign: "center", margin: 0 }}>Войдите в свой аккаунт</h2>
+          <h2 style={{ textAlign: "center", margin: 0 }}>
+            Войдите в свой аккаунт
+          </h2>
         </div>
         {contextHolder}
         <Form.Item
@@ -105,9 +109,7 @@ const Authorization = () => {
         </Form.Item>
       </Form>
     </div>
-
   );
 };
 
 export default Authorization;
-

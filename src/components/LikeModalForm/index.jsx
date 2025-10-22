@@ -1,6 +1,5 @@
-import { Modal, Form, Input, Slider, message } from "antd";
 import { useReducer } from "react";
-import { useSelector } from "react-redux";
+import { Modal, Form, Input, Slider, message } from "antd";
 
 const LikeModalForm = ({
   text,
@@ -10,8 +9,6 @@ const LikeModalForm = ({
   setIsLiked,
 }) => {
   const [messageApi, contextHolder] = message.useMessage();
-
-  const { active } = useSelector(store => store.saveInfo)
 
   function saveReducer(state, action) {
     switch (action.type) {

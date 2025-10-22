@@ -33,15 +33,9 @@ const contentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getVideos.pending, (state, action) => {
-        console.log(action);
-      })
       .addCase(getVideos.fulfilled, (state, action) => {
         state.items = action.payload.items;
       })
-      .addCase(getVideos.rejected, (state, action) => {
-        console.log(action);
-      });
   },
 });
 

@@ -7,6 +7,7 @@ const initialState = {
     maxResults: 15,
     title: "",
   },
+
 };
 
 export const saveInfoSlice = createSlice({
@@ -16,14 +17,13 @@ export const saveInfoSlice = createSlice({
     saving(state, action) {
       state.active = action.payload;
     },
-    deleteItem(state, action) {
-      state.active = state.filter((item) => item.id !== action.payload);
-    },
-    changeReq(state, action) {
+  
+
+    changeRequest(state, action) {
       state.active = action.payload;
     },
   },
 });
 
-export const { saving, changeReq } = saveInfoSlice.actions;
+export const { saving, changeRequest,  } = saveInfoSlice.actions;
 export default saveInfoSlice.reducer;
