@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { Modal, Form, Input, Slider, message } from "antd";
 
-const LikeModalForm = ({
+const AddToFavoritesModal = ({
   text,
   setText,
   isModalOpen,
@@ -108,4 +108,4 @@ const LikeModalForm = ({
   );
 };
 
-export default LikeModalForm;
+export default AddToFavoritesModal;

@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 import { Button, Checkbox, Form, Input, message } from "antd";
-import { login } from "../../redux/authSlice";
+import { login } from "../../redux/slices/authSlice";
 
-const Authorization = () => {
-
+const UserAuth = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -12,6 +12,13 @@ const Authorization = () => {
   const [form] = Form.useForm();
 
   const [messageApi, contextHolder] = message.useMessage();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/menu", { replace: true });
+    }
+  }, [navigate]);
 
   const onFinish = (values) => {
     dispatch(login(values));
@@ -112,4 +119,4 @@ const Authorization = () => {
   );
 };
 
-export default Authorization;
+export default UserAuth;

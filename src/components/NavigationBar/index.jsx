@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Button } from "antd";
 
-const Header = () => {
+const NavigationBar = () => {
   const navigate = useNavigate();
 
   const logOut = () => {
@@ -40,4 +40,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavigationBar;

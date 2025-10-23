@@ -1,17 +1,15 @@
-import Header from "../../Header"
-import InputSearchContent from "../../InputSearchContent"
-import VideoList from "../../VideoList"
+import NavigationBar from "../../NavigationBar";
+import SearchBar from "../../SearchBar";
+import VideoGallery from "../../VideoGallery";
 
 const MainPage = () => {
-    return (
-        <>
-            <Header />
-            <InputSearchContent />
-            <VideoList />
+  return (
+    <>
+      <NavigationBar />
+      <SearchBar />
+      <VideoGallery />
+    </>
+  );
+};
 
-        </>
-    )
-}
-
-
-export default MainPage
+export default MainPage;

@@ -17,8 +17,6 @@ export const saveInfoSlice = createSlice({
     saving(state, action) {
       state.active = action.payload;
     },
-  
-
     changeRequest(state, action) {
       state.active = action.payload;
     },

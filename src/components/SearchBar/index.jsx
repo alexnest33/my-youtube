@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-import LikeModalForm from "../LikeModalForm";
-import { saving } from "../../redux/saveInfoSlice";
+import { saving } from "../../redux/slices/saveInfoSlice";
+import AddToFavoritesModal from "../AddToFavoritesModal";
 
-const InputSearchContent = () => {
+const SearchBar = () => {
   const [text, setText] = useState("");
 
   const [isLiked, setIsLiked] = useState(false);
@@ -100,7 +100,7 @@ const InputSearchContent = () => {
           НАЙТИ
         </Button>
       </Flex>
-      <LikeModalForm
+      <AddToFavoritesModal
         text={text}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
@@ -111,4 +111,9 @@ const InputSearchContent = () => {
   );
 };
 
-export default InputSearchContent;
+export default SearchBar;
+
+//порядок в коде разбить на компоненте
+// пофиксить баги
+// оптимизировать
+//редакс персист
