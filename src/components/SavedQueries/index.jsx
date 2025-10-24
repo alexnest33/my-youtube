@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Modal, Input, Form, Slider } from "antd";
 import { changeRequest } from "../../redux/slices/saveInfoSlice";
+import { getFormaData } from "../../helpers/localStorageHelper";
 import NavigationBar from "../NavigationBar";
 import DeleteQuery from "../DeleteQuery";
 import ExecuteQuery from "../ExecuteQuery";
@@ -14,7 +15,7 @@ const SavedQueries = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("forma")) || [];
+    const data = getFormaData();
     setSavedRequests(data);
   }, []);
 

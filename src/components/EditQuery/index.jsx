@@ -12,15 +12,13 @@ const EditQuery = ({ savedQuery, setChangeModal, savedRequests }) => {
   };
 
   return (
-    <>
-      <Button
-        onClick={() => handleChangeRequest(savedQuery.id)}
-        style={{ marginRight: 8 }}
-        type="primary"
-      >
-        Изменить
-      </Button>
-    </>
+    <Button
+      onClick={() => handleChangeRequest(savedQuery.id)}
+      style={{ marginRight: 8 }}
+      type="primary"
+    >
+      Изменить
+    </Button>
   );
 };
 

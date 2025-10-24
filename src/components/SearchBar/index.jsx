@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { saving } from "../../redux/slices/saveInfoSlice";
+import { getFormaData } from "../../helpers/localStorageHelper";
 import AddToFavoritesModal from "../AddToFavoritesModal";
 
 const SearchBar = () => {
@@ -65,7 +66,7 @@ const SearchBar = () => {
   );
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("forma")) || [];
+    const data = getFormaData();
     setIsLiked(data.some((item) => item.name === text));
   }, [text]);
 
@@ -112,8 +113,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-//порядок в коде разбить на компоненте
-// пофиксить баги
-// оптимизировать
-//редакс персист

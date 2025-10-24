@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
-import { AppstoreOutlined } from "@ant-design/icons";
 import { getVideos } from "../../redux/slices/contentSlice";
 import StatisticsCounter from "../StatisticsCounter";
+import ViewMode from "../ViewMode";
 
 const VideoGallery = () => {
-  const url = import.meta.env.VITE_YOUTUBE_ID;
 
-  const [menu, setMenu] = useState("list");
+  const url = import.meta.env.VITE_YOUTUBE_ID;
+  const [viewMode, setViewMode] = useState("list");
 
   const { items } = useSelector((store) => store.content);
   const { active } = useSelector((store) => store.saveInfo);
@@ -23,28 +21,10 @@ const VideoGallery = () => {
   return (
     <>
       {items.length > 0 && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginBottom: 16,
-            gap: 8,
-          }}
-        >
-          <Button
-            type={menu === "list" ? "primary" : "default"}
-            icon={<UnorderedListOutlined />}
-            onClick={() => setMenu("list")}
-          />
-          <Button
-            type={menu === "grid" ? "primary" : "default"}
-            icon={<AppstoreOutlined />}
-            onClick={() => setMenu("grid")}
-          />
-        </div>
+        <ViewMode viewMode={viewMode} setViewMode={setViewMode} />
       )}
 
-      <div className={`video-list ${menu}`}>
+      <div className={`video-list ${viewMode}`}>
         {items.length === 0 ? (
           <p className="no-videos">Ничего не найдено</p>
         ) : (

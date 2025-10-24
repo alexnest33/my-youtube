@@ -14,15 +14,13 @@ const ExecuteQuery = ({ savedQuery }) => {
   };
 
   return (
-    <>
-      <Button
-        type="primary"
-        style={{ marginRight: 8 }}
-        onClick={() => handleClick(savedQuery.id)}
-      >
-        Выполнить
-      </Button>
-    </>
+    <Button
+      type="primary"
+      style={{ marginRight: 8 }}
+      onClick={() => handleClick(savedQuery.id)}
+    >
+      Выполнить
+    </Button>
   );
 };
 

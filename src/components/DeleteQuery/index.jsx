@@ -1,7 +1,7 @@
 import { Button } from "antd";
 
 const DeleteQuery = ({ savedQuery, setSavedRequests }) => {
-    
+  
   const handleDelete = (id) => {
     setSavedRequests((prevState) => {
       const newState = prevState.filter((item) => item.id !== id);
@@ -11,11 +11,9 @@ const DeleteQuery = ({ savedQuery, setSavedRequests }) => {
   };
 
   return (
-    <>
-      <Button type="primary" danger onClick={() => handleDelete(savedQuery.id)}>
-        Удалить
-      </Button>
-    </>
+    <Button type="primary" danger onClick={() => handleDelete(savedQuery.id)}>
+      Удалить
+    </Button>
   );
 };
 

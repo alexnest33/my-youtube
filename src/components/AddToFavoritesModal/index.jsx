@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import { Modal, Form, Input, Slider, message } from "antd";
+import { getFormaData } from "../../helpers/localStorageHelper";
 
 const AddToFavoritesModal = ({
   text,
@@ -56,7 +57,7 @@ const AddToFavoritesModal = ({
   };
 
   const handleOk = () => {
-    const data = JSON.parse(localStorage.getItem("forma")) || [];
+    const data = getFormaData();
     data.push({ ...state, id: crypto.randomUUID(), name: text });
     localStorage.setItem("forma", JSON.stringify(data));
     setIsModalOpen(false);

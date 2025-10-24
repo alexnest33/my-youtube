@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const StatisticsCounter = ({ id }) => {
+  const url = import.meta.env.VITE_YOUTUBE_QUERY;
   const [views, setViews] = useState(0);
   const getCountViews = async () => {
     try {
       const response = await axios.get(
-        "https://www.googleapis.com/youtube/v3/videos",
+        `${url}/videos`,
         {
           params: {
             part: "statistics",
@@ -25,11 +26,7 @@ const StatisticsCounter = ({ id }) => {
     getCountViews();
   }, []);
 
-  return (
-    <>
-      <p>Количество просмотров: {views} просмотров</p>
-    </>
-  );
+  return <p>Количество просмотров: {views} просмотров</p>;
 };
 
 export default StatisticsCounter;
