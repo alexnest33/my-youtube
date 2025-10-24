@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Button } from "antd";
 import { saving } from "../../redux/slices/saveInfoSlice";
 
-const ExecuteQuery = ({ savedQuery }) => {
+const ExecuteQuery = ({ savedQuery,savedRequests }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

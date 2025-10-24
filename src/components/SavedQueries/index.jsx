@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Card, Modal, Input, Form, Slider } from "antd";
-import { changeRequest } from "../../redux/slices/saveInfoSlice";
+import { useSelector } from "react-redux";
+import { Card } from "antd";
 import { getFormaData } from "../../helpers/localStorageHelper";
 import NavigationBar from "../NavigationBar";
 import DeleteQuery from "../DeleteQuery";
 import ExecuteQuery from "../ExecuteQuery";
 import EditQuery from "../EditQuery";
+import SavedQueriesModal from "../SavedQueriesModal";
 
 const SavedQueries = () => {
   const [savedRequests, setSavedRequests] = useState([]);
   const [changeModal, setChangeModal] = useState(false);
   const { active } = useSelector((store) => store.saveInfo);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const data = getFormaData();
@@ -63,7 +62,7 @@ const SavedQueries = () => {
                 </span>
 
                 <div>
-                  <ExecuteQuery savedQuery={item} />
+                  <ExecuteQuery savedQuery={item} savedRequests={savedRequests} />
                   <EditQuery
                     savedQuery={item}
                     setChangeModal={setChangeModal}
@@ -82,52 +81,11 @@ const SavedQueries = () => {
         )}
       </div>
       {changeModal && (
-        <Modal
-          open={changeModal}
-          title="Редактировать запрос"
-          okText="Сохранить"
-          cancelText="Отмена"
-          onCancel={cancelModal}
-          onOk={handleSaveChanges}
-        >
-          <Form layout="vertical">
-            <Form.Item label="Запрос:">
-              <Input disabled value={active.name} />
-            </Form.Item>
-            <Form.Item label="Название:">
-              <Input
-                placeholder="Укажите название"
-                onChange={(e) =>
-                  dispatch(changeRequest({ ...active, title: e.target.value }))
-                }
-                value={active.title}
-              />
-            </Form.Item>
-            <Form.Item label="Сортировать по:">
-              <select
-                value={active.sorted}
-                onChange={(e) =>
-                  dispatch(changeRequest({ ...active, sorted: e.target.value }))
-                }
-              >
-                <option value="relevance">По релевантности</option>
-                <option value="date">По дате</option>
-                <option value="rating">По рейтингу</option>
-                <option value="viewCount">По просмотрам</option>
-              </select>
-            </Form.Item>
-            <Form.Item label="Максимальное количество">
-              <Slider
-                value={active.maxResults}
-                max={15}
-                onChange={(value) =>
-                  dispatch(changeRequest({ ...active, maxResults: value }))
-                }
-                tooltip={{ open: true }}
-              />
-            </Form.Item>
-          </Form>
-        </Modal>
+        <SavedQueriesModal
+          changeModal={changeModal}
+          cancelModal={cancelModal}
+          handleSaveChanges={handleSaveChanges}
+        />
       )}
     </div>
   );
