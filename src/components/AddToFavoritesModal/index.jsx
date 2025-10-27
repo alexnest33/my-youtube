@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { Modal, Form, Input, Slider, message } from "antd";
 import { getFormaData } from "../../helpers/localStorageHelper";
 
@@ -7,8 +7,12 @@ const AddToFavoritesModal = ({
   isModalOpen,
   setIsModalOpen,
   setIsLiked,
+  isEditMode = false,
+  editData,
+  onSaveEdit
 }) => {
   const [messageApi, contextHolder] = message.useMessage();
+
 
   function saveReducer(state, action) {
     switch (action.type) {
@@ -25,6 +29,8 @@ const AddToFavoritesModal = ({
           maxResults: 15,
           sorted: "relevance",
         };
+      case "setData":
+        return { ...action.payload };
 
       default:
         return state;
@@ -37,6 +43,23 @@ const AddToFavoritesModal = ({
     maxResults: 15,
     sorted: "relevance",
   });
+
+  useEffect(() => {
+    if (isModalOpen) {
+      if (isEditMode && editData) {
+        dispatch({ type: "setData", payload: editData });
+      } else {
+        dispatch({
+          type: "setData", payload: {
+            name: text,
+            title: "",
+            maxResults: 15,
+            sorted: "relevance"
+          }
+        });
+      }
+    }
+  }, [isModalOpen, isEditMode, editData, text]);
 
   const handleChangeTitle = (e) => {
     dispatch({ type: "changeTitle", payload: e.target.value });
@@ -56,13 +79,26 @@ const AddToFavoritesModal = ({
   };
 
   const handleOk = () => {
-    const data = getFormaData();
-    data.push({ ...state, id: crypto.randomUUID(), name: text });
-    localStorage.setItem("forma", JSON.stringify(data));
+    if (isEditMode) {
+      // Режим редактирования
+      onSaveEdit(state);
+    } else {
+      // Режим создания
+      const data = getFormaData();
+      data.push({ ...state, id: crypto.randomUUID(), name: text });
+      localStorage.setItem("forma", JSON.stringify(data));
+      dispatch({ type: "reset" });
+      setIsLiked(true);
+      messageApi.info('Запрос добавлен во вкладку "Избранное"');
+    }
     setIsModalOpen(false);
-    dispatch({ type: "reset" });
-    setIsLiked(true);
-    messageApi.info('Запрос добавлен во вкладку "Избранное"');
+    // const data = getFormaData();
+    // data.push({ ...state, id: crypto.randomUUID(), name: text });
+    // localStorage.setItem("forma", JSON.stringify(data));
+    // setIsModalOpen(false);
+    // dispatch({ type: "reset" });
+    // setIsLiked(true);
+    // messageApi.info('Запрос добавлен во вкладку "Избранное"');
   };
 
   return (
@@ -70,8 +106,8 @@ const AddToFavoritesModal = ({
       open={isModalOpen}
       onCancel={closeModal}
       onOk={handleOk}
-      title="Сохранить запрос"
-      okText="Сохранить"
+      title={isEditMode ? "Редактировать запрос" : "Сохранить запрос"}
+      okText={isEditMode ? "Сохранить изменения" : "Сохранить"}
       cancelText="Отмена"
     >
       {contextHolder}
