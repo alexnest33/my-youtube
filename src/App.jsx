@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import PrivateRoute from "./components/PrivateRoute";
-import SavedQueries from "./components/SavedQueries";
+import SavedQueries from "./pages/SavedQueries";
 import UserAuth from "./components/UserAuth";
 import MainPage from "./pages/MainPage";
 import "./App.css";

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { message } from "antd";
 
 const url = import.meta.env.VITE_YOUTUBE_QUERY;
 
@@ -9,7 +10,7 @@ const initialState = {
 
 export const getVideos = createAsyncThunk(
   "youtube/getvideos",
-  async ({ name, maxResults }, thunkAPI) => {
+  async ({ name, maxResults }) => {
     try {
       const response = await axios.get(`${url}/search`, {
         params: {
@@ -21,7 +22,7 @@ export const getVideos = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.log("Ошибка отправки запроса");
+      message.error("Видео недоступны по причине сервера");
     }
   }
 );

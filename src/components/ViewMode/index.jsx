@@ -4,14 +4,7 @@ import { Button } from "antd";
 
 const ViewToggle = ({ viewMode, setViewMode }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        marginBottom: 16,
-        gap: 8,
-      }}
-    >
+    <div className="view-mode-switcher">
       <Button
         type={viewMode === "list" ? "primary" : "default"}
         icon={<UnorderedListOutlined />}

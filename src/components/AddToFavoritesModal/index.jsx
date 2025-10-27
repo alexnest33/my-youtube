@@ -4,7 +4,6 @@ import { getFormaData } from "../../helpers/localStorageHelper";
 
 const AddToFavoritesModal = ({
   text,
-  setText,
   isModalOpen,
   setIsModalOpen,
   setIsLiked,
@@ -62,7 +61,6 @@ const AddToFavoritesModal = ({
     localStorage.setItem("forma", JSON.stringify(data));
     setIsModalOpen(false);
     dispatch({ type: "reset" });
-    setText("");
     setIsLiked(true);
     messageApi.info('Запрос добавлен во вкладку "Избранное"');
   };

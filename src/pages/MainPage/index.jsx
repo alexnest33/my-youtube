@@ -1,5 +1,5 @@
 import NavigationBar from "../../components/NavigationBar";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../SearchBar";
 import VideoGallery from "../../components/VideoGallery";
 
 const MainPage = () => {

@@ -35,3 +35,9 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 export default store;
+
+
+
+//разбить на три страницы
+//видео галерея метод мап вынести
+//убрать массив из 28 строки проверку !

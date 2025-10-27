@@ -146,3 +146,25 @@
     font-size: 16px;
     margin-top: 80px;
   }
+
+  .savedQueriesContainer{
+    border-radius: 0;
+    padding: 2;
+    max-width: 65%;
+    margin: 20px auto 0 auto
+  }
+
+
+  .savedQueriesCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+  }
+
+  .view-mode-switcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    gap: 8px;
+  }

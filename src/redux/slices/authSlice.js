@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { message } from "antd";
 
 const initialState = {
   email: "",
@@ -15,9 +16,10 @@ export const login = createAsyncThunk(
         { email: values.email, password: values.password }
       );
       localStorage.setItem("token", response.data.token);
+      message.success("Успешный вход!");
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue("Ошибка авторизации");
+      message.error("Ошибка входа. Проверьте email и пароль");
     }
   }
 );
@@ -26,7 +28,6 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
- 
 });
 
 export default authSlice.reducer;

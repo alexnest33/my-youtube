@@ -4,7 +4,7 @@ import { Input, Button, Flex } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { saving } from "../../redux/slices/saveInfoSlice";
 import { getFormaData } from "../../helpers/localStorageHelper";
-import AddToFavoritesModal from "../AddToFavoritesModal";
+import AddToFavoritesModal from "../../components/AddToFavoritesModal";
 
 const SearchBar = () => {
   const [text, setText] = useState("");
@@ -12,9 +12,7 @@ const SearchBar = () => {
   const [isLiked, setIsLiked] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const ref = useRef();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,9 +31,7 @@ const SearchBar = () => {
     if (text.trim() === "") {
       alert("Error");
     } else {
-      localStorage.getItem("text");
       dispatch(saving({ name: text, maxResults: 15 }));
-      setText("");
     }
   };
 
@@ -105,7 +101,7 @@ const SearchBar = () => {
         text={text}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        setText={setText}
+
         setIsLiked={setIsLiked}
       />
     </>
