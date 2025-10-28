@@ -7,7 +7,7 @@ const VideoList = ({ viewMode }) => {
   return (
     <div className={`video-list ${viewMode}`}>
       {items.map((item) => (
-        <div key={item.id.videoId} className="video-item">
+        <div key={item.id?.videoId || item.etag} className="video-item">
           <a
             href={`https://www.youtube.com/watch?v=${item.id.videoId}`}
             target="_blank"

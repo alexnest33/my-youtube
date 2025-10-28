@@ -80,10 +80,8 @@ const AddToFavoritesModal = ({
 
   const handleOk = () => {
     if (isEditMode) {
-      // Режим редактирования
       onSaveEdit(state);
     } else {
-      // Режим создания
       const data = getFormaData();
       data.push({ ...state, id: crypto.randomUUID(), name: text });
       localStorage.setItem("forma", JSON.stringify(data));
@@ -92,13 +90,6 @@ const AddToFavoritesModal = ({
       messageApi.info('Запрос добавлен во вкладку "Избранное"');
     }
     setIsModalOpen(false);
-    // const data = getFormaData();
-    // data.push({ ...state, id: crypto.randomUUID(), name: text });
-    // localStorage.setItem("forma", JSON.stringify(data));
-    // setIsModalOpen(false);
-    // dispatch({ type: "reset" });
-    // setIsLiked(true);
-    // messageApi.info('Запрос добавлен во вкладку "Избранное"');
   };
 
   return (
