@@ -33,7 +33,7 @@ const contentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getVideos.fulfilled, (state, action) => {
-      state.items = action.payload.items;
+      state.items = action.payload?.items || [];
     });
   },
 });
