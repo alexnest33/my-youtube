@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const StatisticsCounter = ({ id }) => {
-  
+
   const [views, setViews] = useState(0);
   const getCountViews = async () => {
     try {
@@ -11,7 +11,7 @@ const StatisticsCounter = ({ id }) => {
         params: {
           part: "statistics",
           id: id,
-          key: import.meta.env.VITE_YOUTUBE_API_KEY,
+          key: import.meta.env.VITE_API_YOUTUBE_KEY,
         },
       });
       if (response.data.items && response.data.items[0] && response.data.items[0].statistics) {
