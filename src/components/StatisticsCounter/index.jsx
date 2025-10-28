@@ -3,7 +3,7 @@ import axios from "axios";
 import { message } from 'antd';
 
 const StatisticsCounter = ({ id }) => {
-  const url = import.meta.env.VITE_YOUTUBE_QUERY;
+  const url = import.meta.env.VITE_YOUTUBE_QUERY || "https://www.googleapis.com/youtube/v3"
   const [views, setViews] = useState(0);
   const getCountViews = async () => {
     try {
