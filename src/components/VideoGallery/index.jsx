@@ -10,6 +10,11 @@ const VideoGallery = () => {
 
   const { items } = useSelector((store) => store.content);
   const { active } = useSelector((store) => store.saveInfo);
+  console.log('API Key:', import.meta.env.VITE_YOUTUBE_API_KEY);
+  console.log('YouTube URL:', import.meta.env.VITE_YOUTUBE_ID);
+  console.log('YouTube Query:', import.meta.env.VITE_YOUTUBE_QUERY);
+  console.log('Production items:', items);
+  console.log('First item structure:', items?.[0])
 
 
   const dispatch = useDispatch();
