@@ -3,11 +3,11 @@ import axios from "axios";
 
 
 const StatisticsCounter = ({ id }) => {
-  const url = import.meta.env.VITE_YOUTUBE_QUERY || "https://www.googleapis.com/youtube/v3"
+  
   const [views, setViews] = useState(0);
   const getCountViews = async () => {
     try {
-      const response = await axios.get(`${url}/videos`, {
+      const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
         params: {
           part: "statistics",
           id: id,
