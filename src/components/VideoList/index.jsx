@@ -1,8 +1,9 @@
+import { useSelector } from "react-redux";
 import StatisticsCounter from "../StatisticsCounter";
 
-const VideoList = ({ items, viewMode }) => {
+const VideoList = ({viewMode }) => {
   const url = import.meta.env.VITE_YOUTUBE_ID;
-  
+  const { items } = useSelector((store) => store.content)
   return (
     <div className={`video-list ${viewMode}`}>
       {items.map((item) => (

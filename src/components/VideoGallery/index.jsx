@@ -25,9 +25,10 @@ const VideoGallery = () => {
 
       <div className={`video-list ${viewMode}`}>
         {items?.length ? (
-          <NoResults />
+          <VideoList viewMode={viewMode} />
         ) : (
-          <VideoList items={items} viewMode={viewMode} />
+
+          <NoResults />
         )}
       </div>
     </>

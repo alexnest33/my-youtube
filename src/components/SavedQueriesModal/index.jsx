@@ -11,16 +11,16 @@ const SavedQueriesModal = ({ changeModal, cancelModal, handleSaveChanges }) => {
   const handleSaveEdit = (savedData) => {
     console.log("Данные из модалки:", savedData);
     dispatch(changeRequest(savedData));
-    handleSaveChanges()
+    handleSaveChanges(savedData)
   };
 
   return (
     <AddToFavoritesModal
       isModalOpen={changeModal}
       setIsModalOpen={cancelModal}
-      isEditMode={true}                    
-      editData={active}                    
-      onSaveEdit={handleSaveEdit}          
+      isEditMode={true}
+      editData={active}
+      onSaveEdit={handleSaveEdit}
     />
   );
 };

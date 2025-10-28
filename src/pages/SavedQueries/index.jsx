@@ -19,9 +19,9 @@ const SavedQueries = () => {
     setChangeModal(false);
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (savedData) => {
     const updated = savedRequests.map((item) =>
-      item.id === active.id ? active : item
+      item.id === savedData.id ? savedData : item
     );
     localStorage.setItem("forma", JSON.stringify(updated));
     setSavedRequests(updated);
