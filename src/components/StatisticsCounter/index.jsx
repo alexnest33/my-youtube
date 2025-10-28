@@ -14,9 +14,7 @@ const StatisticsCounter = ({ id }) => {
           key: import.meta.env.VITE_API_YOUTUBE_KEY,
         },
       });
-      if (response.data.items && response.data.items[0] && response.data.items[0].statistics) {
-        setViews(response.data.items[0].statistics.viewCount);
-      }
+      setViews(response.data.items[0].statistics.viewCount);
     } catch (error) {
       console.log(error)
     }
