@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { message } from 'antd';
+
 
 const StatisticsCounter = ({ id }) => {
   const url = import.meta.env.VITE_YOUTUBE_QUERY || "https://www.googleapis.com/youtube/v3"
@@ -18,7 +18,7 @@ const StatisticsCounter = ({ id }) => {
         setViews(response.data.items[0].statistics.viewCount);
       }
     } catch (error) {
-      message.error("Статистика по просмотрам недоступна");
+      console.log(error)
     }
   };
 

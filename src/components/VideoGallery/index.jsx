@@ -21,7 +21,7 @@ const VideoGallery = () => {
 
   useEffect(() => {
     dispatch(getVideos({ name: active.name, maxResults: active.maxResults }));
-  }, [active]);
+  }, [active, dispatch]);
 
   return (
     <>

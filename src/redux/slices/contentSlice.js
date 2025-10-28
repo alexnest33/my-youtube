@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { message } from "antd";
+
 
 const url = import.meta.env.VITE_YOUTUBE_QUERY;
 
@@ -22,7 +22,7 @@ export const getVideos = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      message.error("Видео недоступны по причине сервера");
+      console.log(error);
     }
   }
 );
