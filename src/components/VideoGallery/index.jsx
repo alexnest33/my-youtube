@@ -19,12 +19,12 @@ const VideoGallery = () => {
 
   return (
     <>
-      {items && items.length > 0 && (
+      {items?.length > 0 && (
         <ViewMode viewMode={viewMode} setViewMode={setViewMode} />
       )}
 
       <div className={`video-list ${viewMode}`}>
-        {items.length === 0 ? (
+        {items?.length ? (
           <NoResults />
         ) : (
           <VideoList items={items} viewMode={viewMode} />
