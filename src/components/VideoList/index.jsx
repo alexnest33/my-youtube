@@ -2,6 +2,7 @@ import StatisticsCounter from "../StatisticsCounter";
 
 const VideoList = ({ items, viewMode }) => {
   const url = import.meta.env.VITE_YOUTUBE_ID;
+  
   return (
     <div className={`video-list ${viewMode}`}>
       {items.map((item) => (

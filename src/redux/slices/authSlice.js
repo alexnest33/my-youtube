@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
       );
       localStorage.setItem("token", response.data.token);
       message.success("Успешный вход!");
-      return response.data;
+      return response.data.token;
     } catch (error) {
       message.error("Ошибка входа. Проверьте email и пароль");
     }

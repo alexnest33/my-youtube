@@ -21,8 +21,13 @@ const UserAuth = () => {
   }, [navigate]);
 
   const onFinish = (values) => {
-    dispatch(login(values));
-    navigate("/menu");
+    dispatch(login(values))
+      .unwrap()
+      .then(() => {
+        navigate("/menu");
+      })
+
+
   };
   const onFinishFailed = (errorInfo) => {
     messageApi.info("Неправильный логин или пароль");
@@ -105,9 +110,7 @@ const UserAuth = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked" label={null}>
-          <Checkbox>Сохранить</Checkbox>
-        </Form.Item>
+
 
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
