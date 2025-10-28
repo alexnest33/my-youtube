@@ -10,6 +10,8 @@ const VideoGallery = () => {
 
   const { items } = useSelector((store) => store.content);
   const { active } = useSelector((store) => store.saveInfo);
+  console.log('🎯 VideoGallery items:', items);
+  console.log('🎯 Items length:', items?.length);
 
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { message } from "antd";
+import { message } from 'antd';
 
 const StatisticsCounter = ({ id }) => {
   const url = import.meta.env.VITE_YOUTUBE_QUERY;
@@ -14,14 +14,18 @@ const StatisticsCounter = ({ id }) => {
           key: import.meta.env.VITE_YOUTUBE_API_KEY,
         },
       });
-      setViews(response.data.items[0].statistics.viewCount);
+      if (response.data.items && response.data.items[0] && response.data.items[0].statistics) {
+        setViews(response.data.items[0].statistics.viewCount);
+      }
     } catch (error) {
       message.error("Статистика по просмотрам недоступна");
     }
   };
 
   useEffect(() => {
-    getCountViews();
+    if (id) {
+      getCountViews()
+    }
   }, [id]);
 
   return <p>Количество просмотров: {views} просмотров</p>;
