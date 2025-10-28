@@ -10,8 +10,7 @@ const VideoGallery = () => {
 
   const { items } = useSelector((store) => store.content);
   const { active } = useSelector((store) => store.saveInfo);
-  console.log('🎯 VideoGallery items:', items);
-  console.log('🎯 Items length:', items?.length);
+
 
   const dispatch = useDispatch();
 
@@ -21,18 +20,16 @@ const VideoGallery = () => {
 
   return (
     <>
-      {items?.length > 0 && (
-        <ViewMode viewMode={viewMode} setViewMode={setViewMode} />
+      {items && items.length > 0 ? (
+        <>
+          <ViewMode viewMode={viewMode} setViewMode={setViewMode} />
+          <div className={`video-list ${viewMode}`}>
+            <VideoList viewMode={viewMode} />
+          </div>
+        </>
+      ) : (
+        <NoResults />
       )}
-
-      <div className={`video-list ${viewMode}`}>
-        {items?.length ? (
-          <VideoList viewMode={viewMode} />
-        ) : (
-
-          <NoResults />
-        )}
-      </div>
     </>
   );
 };
