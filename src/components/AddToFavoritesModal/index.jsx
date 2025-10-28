@@ -9,10 +9,9 @@ const AddToFavoritesModal = ({
   setIsLiked,
   isEditMode = false,
   editData,
-  onSaveEdit
+  onSaveEdit,
 }) => {
   const [messageApi, contextHolder] = message.useMessage();
-
 
   function saveReducer(state, action) {
     switch (action.type) {
@@ -50,12 +49,13 @@ const AddToFavoritesModal = ({
         dispatch({ type: "setData", payload: editData });
       } else {
         dispatch({
-          type: "setData", payload: {
+          type: "setData",
+          payload: {
             name: text,
             title: "",
             maxResults: 15,
-            sorted: "relevance"
-          }
+            sorted: "relevance",
+          },
         });
       }
     }
