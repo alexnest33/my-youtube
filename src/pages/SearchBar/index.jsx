@@ -101,7 +101,6 @@ const SearchBar = () => {
         text={text}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-
         setIsLiked={setIsLiked}
       />
     </>

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { getFormaData } from "../../helpers/localStorageHelper";
 import NavigationBar from "../../components/NavigationBar";
 import SavedQueriesModal from "../../components/SavedQueriesModal";
 import SavedQuerisList from "../../components/SavedQueriesList";
+import NoResults from "../../components/NoResults";
 
 const SavedQueries = () => {
   const [savedRequests, setSavedRequests] = useState([]);
   const [changeModal, setChangeModal] = useState(false);
-  const { active } = useSelector((store) => store.saveInfo);
+
 
   useEffect(() => {
     const data = getFormaData();
@@ -39,7 +39,7 @@ const SavedQueries = () => {
             setSavedRequests={setSavedRequests}
           />
         ) : (
-          <p>Пока нет сохранённых запросов 😔</p>
+          <NoResults />
         )}
       </div>
       {changeModal && (

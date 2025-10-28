@@ -1,3 +1,20 @@
+.form-login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+
+.form-login2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+
 .search-input {
   width: 600px;
   border-radius: 20px;
@@ -54,23 +71,6 @@
   flex-direction: column;
   align-items: center;
 }
-
-/* .list {
-    display: flex;
-    align-items: center;       
-/* justify-content: space-between;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-  }
-
-  .spanLine {
-    flex: 1;
-    display: flex;          
-/* align-items: center;
-  } */
-
 
 
   .zerovideo{

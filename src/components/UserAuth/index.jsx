@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button,Form, Input, message } from "antd";
 import { login } from "../../redux/slices/authSlice";
 
 const UserAuth = () => {
@@ -25,9 +25,7 @@ const UserAuth = () => {
       .unwrap()
       .then(() => {
         navigate("/menu");
-      })
-
-
+      });
   };
   const onFinishFailed = (errorInfo) => {
     messageApi.info("Неправильный логин или пароль");
@@ -37,15 +35,7 @@ const UserAuth = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f5f5f5",
-      }}
-    >
+    <div className="form-login">
       <Form
         form={form}
         name="basic"
@@ -66,14 +56,7 @@ const UserAuth = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginBottom: 24,
-          }}
-        >
+        <div className="form-login2">
           <img
             src="sibdev-logo.png"
             alt="SibDev Logo"
@@ -109,8 +92,6 @@ const UserAuth = () => {
         >
           <Input.Password />
         </Form.Item>
-
-
 
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
